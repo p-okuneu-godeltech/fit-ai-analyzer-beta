@@ -1,0 +1,54 @@
+{
+  "summary": {
+    "id": "temp",
+    "userId": "temp-user",
+    "startTime": "2026-01-18T12:49:34.000Z",
+    "endTime": "2026-01-18T14:20:24.000Z",
+    "totalDistanceMeters": 16413.39,
+    "totalDurationSeconds": 5450,
+    "averagePaceSecondsPerKm": 332.045969784426,
+    "averageCadenceSpm": 78.79515418502203
+  },
+  "recordsSample": [
+    {
+      "timestamp": "2026-01-18T12:49:34.000Z",
+      "distanceMeters": 0,
+      "speedMetersPerSecond": null,
+      "cadenceSpm": 67,
+      "latitudeDeg": 51.11703347414732,
+      "longitudeDeg": 17.004744904115796
+    },
+    {
+      "timestamp": "2026-01-18T12:49:34.000Z",
+      "distanceMeters": 0,
+      "speedMetersPerSecond": null,
+      "cadenceSpm": 67,
+      "latitudeDeg": 51.11703347414732,
+      "longitudeDeg": 17.004744904115796
+    },
+    {
+      "timestamp": "2026-01-18T12:49:35.000Z",
+      "distanceMeters": 8.21,
+      "speedMetersPerSecond": null,
+      "cadenceSpm": 67,
+      "latitudeDeg": 51.117108492180705,
+      "longitudeDeg": 17.00473534874618
+    },
+    {
+      "timestamp": "2026-01-18T12:49:35.000Z",
+      "distanceMeters": 8.21,
+      "speedMetersPerSecond": null,
+      "cadenceSpm": 67,
+      "latitudeDeg": 51.117108492180705,
+      "longitudeDeg": 17.00473534874618
+    },
+    {
+      "timestamp": "2026-01-18T12:49:36.000Z",
+      "distanceMeters": 14.26,
+      "speedMetersPerSecond": null,
+      "cadenceSpm": 67,
+      "latitudeDeg": 51.11710128374398,
+      "longitudeDeg": 17.004822604358196
+    }
+  ]
+}
