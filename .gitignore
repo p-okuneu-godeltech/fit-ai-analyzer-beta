@@ -27,7 +27,7 @@ pnpm-debug.log*
 # Environment variables
 .env
 .env.*
-!.env.example
+!.env.template
 
 # SQLite data files (local only)
 *.sqlite
