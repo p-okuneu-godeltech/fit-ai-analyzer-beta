@@ -140,7 +140,7 @@ export function computePerKmSplits(session: ParsedSession): Split[] {
 export function computePaceStatsFromSplits(splits: Split[]): PaceStats {
   const paces = splits
     .map((s) => s.paceSecondsPerKm)
-    .filter((p): p is number => p != null && Number.isFinite(p));
+    .filter((p): p is number => p != null && Number.isFinite(p) && p > 0);
 
   if (!paces.length) {
     return {
@@ -148,6 +148,7 @@ export function computePaceStatsFromSplits(splits: Split[]): PaceStats {
       bestPaceSecondsPerKm: null,
       worstPaceSecondsPerKm: null,
       paceStdDevSecondsPerKm: null,
+      paceVariabilitySecondsPerKm: null,
     };
   }
 
@@ -164,6 +165,7 @@ export function computePaceStatsFromSplits(splits: Split[]): PaceStats {
     bestPaceSecondsPerKm: best,
     worstPaceSecondsPerKm: worst,
     paceStdDevSecondsPerKm: stdDev,
+    paceVariabilitySecondsPerKm: paces.length > 1 ? worst - best : null,
   };
 }
 

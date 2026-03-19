@@ -137,3 +137,20 @@ When you need background or protocol details, prefer these sources:
 - uPlot (lightweight charting lib): **/docs/libraries/uPlot-README.md**
 
 Use external references to guide implementations, but keep all code and explanations self-contained within this project’s style and constraints.
+
+---
+
+## 11. Repository Copilot Customizations
+
+Additional repository customizations are available for common workflows:
+
+- Skills:
+  - `.github/skills/test-fixture-builder/SKILL.md`
+  - `.github/skills/fit-edge-cases/SKILL.md`
+  - `.github/skills/session-metrics-validation/SKILL.md`
+- Prompts:
+  - `.github/prompts/test-fixture-builder.prompt.md`
+  - `.github/prompts/fit-edge-cases.prompt.md`
+  - `.github/prompts/session-metrics-validation.prompt.md`
+
+For validation steps and acceptance criteria of these customizations, use `docs/copilot-customizations-testing.md`.

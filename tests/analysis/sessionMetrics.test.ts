@@ -126,4 +126,77 @@ describe("computeSessionMetrics", () => {
 
     expect(metrics.pauses).toHaveLength(0);
   });
+
+  it("computes pace variability as worst-minus-best split pace", () => {
+    const records: SessionRecord[] = [
+      makeRecord(0, 0, null, 170),
+      makeRecord(280, 1000, null, 170),
+      makeRecord(620, 2000, null, 170),
+      makeRecord(930, 3000, null, 170),
+    ];
+
+    const session = makeParsedSession(records);
+    const metrics = computeSessionMetrics(session);
+
+    expect(metrics.paceStats.bestPaceSecondsPerKm).toBeCloseTo(280, 1);
+    expect(metrics.paceStats.worstPaceSecondsPerKm).toBeCloseTo(340, 1);
+    expect(metrics.paceStats.paceVariabilitySecondsPerKm).toBeCloseTo(60, 1);
+  });
+
+  it("returns zero pace variability for perfectly steady splits", () => {
+    const records: SessionRecord[] = [
+      makeRecord(0, 0, null, 170),
+      makeRecord(300, 1000, null, 170),
+      makeRecord(600, 2000, null, 170),
+      makeRecord(900, 3000, null, 170),
+    ];
+
+    const session = makeParsedSession(records);
+    const metrics = computeSessionMetrics(session);
+
+    expect(metrics.paceStats.paceVariabilitySecondsPerKm).toBeCloseTo(0, 1);
+  });
+
+  it("returns null pace stats for empty records", () => {
+    const point = new Date("2023-01-01T00:00:00Z");
+
+    const session: ParsedSession = {
+      records: [],
+      summary: {
+        id: "test",
+        userId: "test-user",
+        startTime: point,
+        endTime: point,
+        totalDistanceMeters: 0,
+        totalDurationSeconds: 0,
+        averagePaceSecondsPerKm: null,
+        averageCadenceSpm: null,
+      },
+    };
+
+    const metrics = computeSessionMetrics(session);
+
+    expect(metrics.splits).toHaveLength(0);
+    expect(metrics.paceStats.averagePaceSecondsPerKm).toBeNull();
+    expect(metrics.paceStats.paceStdDevSecondsPerKm).toBeNull();
+    expect(metrics.paceStats.paceVariabilitySecondsPerKm).toBeNull();
+    expect(metrics.halfComparison).toBeNull();
+  });
+
+  it("ignores zero-duration split pace values when computing pace variability", () => {
+    const records: SessionRecord[] = [
+      makeRecord(0, 0, null, 170),
+      makeRecord(0, 1000, null, 170),
+      makeRecord(320, 2000, null, 170),
+    ];
+
+    const session = makeParsedSession(records);
+    const metrics = computeSessionMetrics(session);
+
+    expect(metrics.splits[0].paceSecondsPerKm).toBeCloseTo(0, 1);
+    expect(metrics.splits[1].paceSecondsPerKm).toBeCloseTo(320, 1);
+    expect(metrics.paceStats.bestPaceSecondsPerKm).toBeCloseTo(320, 1);
+    expect(metrics.paceStats.worstPaceSecondsPerKm).toBeCloseTo(320, 1);
+    expect(metrics.paceStats.paceVariabilitySecondsPerKm).toBeNull();
+  });
 });

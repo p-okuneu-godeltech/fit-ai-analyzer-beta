@@ -38,6 +38,7 @@ export type PaceStats = {
   bestPaceSecondsPerKm: number | null;
   worstPaceSecondsPerKm: number | null;
   paceStdDevSecondsPerKm: number | null;
+  paceVariabilitySecondsPerKm: number | null;
 };
 
 export type CadenceStats = {
